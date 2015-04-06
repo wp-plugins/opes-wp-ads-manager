@@ -1,0 +1,12 @@
+<?php
+
+# Here you can include the 'model' and 'view' files - not other controllers! All controllers are loaded automatically.
+
+class _WPADSMNGR_uwxl__WpQuery_Change {
+
+	public static function init( $params ) {
+		return new _WPADSMNGR_uwxl__WpQuery_Change( $params );
+	}
+}
+
+_WPADSMNGR_uwxl__WpQuery_Change::init( $params ); 
