@@ -7,7 +7,7 @@ class _WPADSMNGR_uwxl__Activation_Hook {
 	private function __construct( $params ) {
 		register_activation_hook( __WPADSMNGR_uwxl__THIS_PLUGIN__MAIN_FILE_, array( $this , 'installPlugin' ) );
 		register_deactivation_hook( __WPADSMNGR_uwxl__THIS_PLUGIN__MAIN_FILE_, array( $this , 'uninstallPlugin' ) );
-
+/*
 		global $pagenow;
 
 		if ( 'plugins.php' == $pagenow ) {
@@ -17,6 +17,7 @@ class _WPADSMNGR_uwxl__Activation_Hook {
 			$hook = "in_plugin_update_message-$folder/$file";
 			add_action( $hook, array( $this , 'updateMessage' ) , 20, 2 );
 		}
+*/
 	}
 	
 	public static function init( $params ) {
@@ -32,7 +33,7 @@ class _WPADSMNGR_uwxl__Activation_Hook {
 	public function uninstallPlugin() {
 		do_action( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_uninstall_plugin_action' );
 	}
-
+/*
 	public function updateMessage( $plugin_data, $r )
 	{
 	    // readme contents
@@ -60,6 +61,7 @@ class _WPADSMNGR_uwxl__Activation_Hook {
 	    $output = $changelog;
 	    echo $output;
 	}
+*/
 }
 
 _WPADSMNGR_uwxl__Activation_Hook::init( array() ); 
