@@ -22,16 +22,29 @@ class _WPADSMNGR_uwxl__Widgets_Content {
 			'meta_key'  => 'order_in_position',
 			'meta_query' => array(
 				array(
-					'key'     	=> 'show_advert_stop_date',
-					'value'   	=> date( 'Y-m-d' ),
-					'type'    	=> 'date',
-					'compare' 	=> '>=',
-				),
-				array(
 					'key' 		=> 'show_advert_start_date',
 					'value'   	=> current_time( 'Y-m-d' ),
 					'type'    	=> 'date',
 					'compare' 	=> '<=',
+				),
+				array(
+					'relation' => 'OR',
+					array(
+						'key'     	=> 'show_advert_stop_date',
+						'value'   	=> date( 'Y-m-d' ),
+						'type'    	=> 'date',
+						'compare' 	=> '>=',
+					),
+					array(
+						'key'     	=> 'show_advert_stop_date',
+						'value'   	=> '',
+						'compare' 	=> '=',
+					),
+					array(
+						'key'     	=> 'show_advert_stop_date',
+						//'value'   	=> '',
+						'compare' 	=> 'NOT EXISTS',
+					)
 				),
 				array(
 					'key' 		=> 'ad_position',
@@ -59,8 +72,11 @@ class _WPADSMNGR_uwxl__Widgets_Content {
 					)
 				)
 			),
-			'posts_per_page'   => -1,
+			'posts_per_page'   => -1//,
+			//'nopaging' => true
 		);
+
+		$args = apply_filters( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_ads_in_position_query_filter' , $args , $position );
 
 		return get_posts( $args );
 	}

@@ -185,6 +185,7 @@ class _WPADSMNGR_uwxl__Ad_Metaboxes {
 ?>
 			<div id="select-position-block">
 				<select id="select-position-widget" dir="rtl" style="text-align:right;" class="opes-rtl" name="advert_settings[ad_position]">
+					<option value=""><?php _e( '- none -' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ); ?></option>
 <?php
 				$selected_position = false;
 				foreach ( $positions_widgets as $id => $position ) {
@@ -200,29 +201,39 @@ class _WPADSMNGR_uwxl__Ad_Metaboxes {
 ?>
 				</select>
 
-				<h4><?php _e( 'Ads on selected position' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ); ?><br />
-					<span style="font-size: 9px;">(<?php _e( 'Their order can be adjusted, this will result in the display order on the page' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ); ?>)</span>
-				</h4>
-
-				<div id="loader" style="display: none; height: 20px; margin-top: 8px; margin-bottom: 8px; text-align: center;"><img src="<?php echo __WPADSMNGR_uwxl__THIS_PLUGIN__ADMIN_URL_ . 'assets' . __WPADSMNGR_uwxl__PS_ . 'images' . __WPADSMNGR_uwxl__PS_ . 'loader.gif' ;?>"></div>
-				
-				<div id="position-items-container" class="">
-					<ul class="sortable">
 <?php
-					$ads = $_WPADSMNGR_uwxl__Widgets_Content->getAdsInPosition( $selected_position );
+				$show_ads_on_selected_position = true;
 
-					if ( is_array( $ads ) && count( $ads ) > 0 ) {
-						foreach ( $ads as $key => $ad ) {
+				$show_ads_on_selected_position = apply_filters( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_ad_metabox_show_ads_on_selected_position_filter' , $show_ads_on_selected_position );
+
+				if ( $show_ads_on_selected_position ) {
 ?>
-							<li class="ui-state-default" style="cursor: move;" data-id="<?php echo $ad->ID; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><span style="display: block; margin-left: 6px; margin-right: 6px; text-align: right;"><?php
-								echo get_the_title( $ad->ID );
-							?></span><input type="hidden" name="order_in_position_ad_id[]" value="<?php echo $ad->ID; ?>" /></li>
+					<h4><?php _e( 'Ads on selected position' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ); ?><br />
+						<span style="font-size: 9px;">(<?php _e( 'Their order can be adjusted, this will result in the display order on the page' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ); ?>)</span>
+					</h4>
+
+					<div id="loader" style="display: none; height: 20px; margin-top: 8px; margin-bottom: 8px; text-align: center;"><img src="<?php echo __WPADSMNGR_uwxl__THIS_PLUGIN__ADMIN_URL_ . 'assets' . __WPADSMNGR_uwxl__PS_ . 'images' . __WPADSMNGR_uwxl__PS_ . 'loader.gif' ;?>"></div>
+					
+					<div id="position-items-container" class="">
+						<ul class="sortable">
 <?php
+						$ads = $_WPADSMNGR_uwxl__Widgets_Content->getAdsInPosition( $selected_position );
+
+						if ( is_array( $ads ) && count( $ads ) > 0 ) {
+							foreach ( $ads as $key => $ad ) {
+?>
+								<li class="ui-state-default" style="cursor: move;" data-id="<?php echo $ad->ID; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><span style="display: block; margin-left: 6px; margin-right: 6px; text-align: right;"><?php
+									echo get_the_title( $ad->ID );
+								?></span><input type="hidden" name="order_in_position_ad_id[]" value="<?php echo $ad->ID; ?>" /></li>
+<?php
+							}
 						}
-					}
 ?>					
-					</ul>
-				</div>
+						</ul>
+					</div>
+<?php
+				}
+?>
 			</div>
 <?php
 		}

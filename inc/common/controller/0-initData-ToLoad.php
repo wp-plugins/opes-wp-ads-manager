@@ -49,6 +49,7 @@ class _WPADSMNGR_uwxl__InitData {
 		$this->optionsPanelSlug = $this->plugin_short_slug . '_options';
 
 		$this->positions_widgets = get_option( $this->optionsPanelSlug . '_positions_widgets' , false );
+		
 	}
 	
 	public static function init( $params ) {

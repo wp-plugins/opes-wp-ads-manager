@@ -63,6 +63,15 @@ class _WPADSMNGR_uwxl__adminOptionsPanel {
 
 ?>
 	<div class="wrap uwxl-options-wrap">
+<?php
+		$info = '';
+
+		$info = apply_filters( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_info_positions_widgets_group_filter' , $info );
+
+		if ( !empty( $info ) )
+			echo $info;
+?>
+
 		<h2><?php echo $_WPADSMNGR_uwxl__InitData->plugin_full_name_label; ?></h2>
 
 		<h3><?php _e( 'Postions Widgets' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) ?></h3>
@@ -147,6 +156,8 @@ class _WPADSMNGR_uwxl__adminOptionsPanel {
 			$validateInputs = $positions_widgets;
 		}
 
+		$added = false;
+
 		//echo "<pre>".print_r($inputs,true)."</pre>";
 		//wp_die();
 
@@ -177,12 +188,40 @@ class _WPADSMNGR_uwxl__adminOptionsPanel {
 					'desc' => trim( $desc )
 				);
 
-				$validateInputs = $positions_widgets;
+				$validateInputs = apply_filters( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_validate_positions_widgets_group_filter' , $positions_widgets , $_WPADSMNGR_uwxl__InitData->positions_widgets );
+
+				$added = true;
 			}
 
 		}
 
-		return $validateInputs;
+		if (  isset( $validateInputs['positions_widgets'] ) ) {
+			if (  isset( $validateInputs['messages'] ) ) {
+				if ( is_array( $validateInputs['messages'] ) ) {
+					foreach ( $validateInputs['messages'] as $messageArr ) {
+						$setting = null;
+						$code= null;
+						$message= null;
+						$type= null;
+
+						extract( $messageArr );
+
+						add_settings_error( $setting, $code, $message, $type );
+					}
+				}
+			}
+			return $validateInputs['positions_widgets'];
+		} else {
+			if ( $added ) {
+				add_settings_error(
+					$_WPADSMNGR_uwxl__InitData->optionsPanelSlug . '_positions_widgets_group',
+					esc_attr( 'position_added_successfully' ),
+					__( 'Position widget has been added successfully.' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ),
+					'updated'
+				);
+			}
+			return $validateInputs;
+		}
 	}
 
 }

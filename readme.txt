@@ -3,7 +3,7 @@ Contributors: twapaw
 Tags: ads, ad, advert, adverts, advertisement, advertisements, manager, plugin
 Requires at least: 3.5.0
 Tested up to: 4.1.1
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 
 Opes WP Ads Manager allows you to show advertisements on the website
@@ -16,13 +16,17 @@ Opes WP Ads Manager is a simple plugin that allows you to show advertisements as
 
 Major features in Opes WP Ads Manager include:
 
+* <strong style="font-size: 18px;">Since version 1.1.0 only one widget can be add and only one ad can be shown</strong>
 * An ad as a custom post type
 * An every ad can link to specific web page
 * A widget generator
-* Management of order of ads in a widget
 * A custom post featured thumbnail used as an ad
 * Three sizes of ad are available
-* Stats (PRO Version - available soon)
+
+PRO Version (available soon) features:
+* Stats
+* Not limited widgets and ads can be add
+* Management of order of ads in a widget
 
 == Installation ==
 
@@ -31,6 +35,13 @@ Major features in Opes WP Ads Manager include:
 * Create your first ad!
 
 == Changelog ==
+
+= 1.1.0 =
+*Release Date - 7th April, 2015*
+
+* FIXED: bug with ads querying when stop date was empty
+* <strong style="font-size: 18px;">Since version 1.1.0 only one widget can be add and only one ad can be shown</strong>
+* <strong style="font-size: 18px;">Full version is PRO version (available soon)</strong>
 
 = 1.0.0 =
 *Release Date - 7th April, 2015*
