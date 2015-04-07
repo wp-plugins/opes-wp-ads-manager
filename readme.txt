@@ -24,6 +24,7 @@ Major features in Opes WP Ads Manager include:
 * Three sizes of ad are available
 
 PRO Version (available soon) features:
+
 * Stats
 * Not limited widgets and ads can be add
 * Management of order of ads in a widget
