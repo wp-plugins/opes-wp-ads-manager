@@ -15,16 +15,40 @@ class _WPADSMNGR_uwxl__Restrictions {
 
 		add_filter( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_ad_metabox_show_ads_on_selected_position_filter' , array( $this , 'adMetaboxShowAdsOnSelectedPositionFilter' ) , 0 , 1 );
 
-		add_filter( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_info_positions_widgets_group_filter' , array( $this , 'infoPositionsWidgetsGroupFilter' ) , 0 , 1 );
+		add_filter( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_info_positions_widgets_group_filter' , array( $this , 'info_PositionsWidgets_AdSizes_GroupFilter' ) , 0 , 1 );
+
+		add_filter( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_info_ad_sizes_group_filter' , array( $this , 'info_PositionsWidgets_AdSizes_GroupFilter' ) , 0 , 1 );
+
+		add_action( 'admin_notices', array( $this , 'adminNoticeInfo' ) );
 	}
 	
 	public static function init( $params ) {
 		return new _WPADSMNGR_uwxl__Restrictions( $params );
 	}
 
-	public function infoPositionsWidgetsGroupFilter( $info ) {
+	public function adminNoticeInfo() {
+		global $_WPADSMNGR_uwxl__InitData;
 
-		return __( '<div class="error"><h1><p>Since version 1.1.0 only one widget can be add and only one ad can be shown.</p><p>Full version is PRO version (available soon)</p></h1></div>' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ).$info;
+		//$class = "error";
+		$message = '<div class="error"><h1><p>'.__( 'Since version 1.2.0 only one widget can be add and only two ads can be shown' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ).'.</p><p>'.__( 'Full version is PRO version (available soon)' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ).'</p></h1></div>';
+
+		$message .= '<div class="updated"><h1><p>'.__( 'If you are interested in the use and further development of this plugin by me, please email me ' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ).': <a href="mailto:programmer@it-opes.com">programmer@it-opes.com</a></p></h1></div>';
+
+		$screen = get_current_screen();
+
+		if ( isset( $screen->post_type ) && $screen->post_type == $_WPADSMNGR_uwxl__InitData->ads_PostType['name'] )
+			echo $message;
+
+		//<pre>".print_r($screen,true)."</pre>
+	}
+
+	public function info_PositionsWidgets_AdSizes_GroupFilter( $info ) {
+
+		$message = '<div class="error"><h1><p>'.__( 'Since version 1.2.0 only one widget can be add and only two ads can be shown' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ).'.</p><p>'.__( 'Full version is PRO version (available soon)' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ).'</p></h1></div>';
+
+		$message .= '<div class="updated"><h1><p>'.__( 'If you are interested in the use and further development of this plugin by me, please email me ' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ).': <a href="mailto:programmer@it-opes.com">programmer@it-opes.com</a></p></h1></div>';
+
+		return $message.$info;
 	}
 
 	public function validatePositionsWidgetsGroupFilter( $validateInputs , $positions_widgets ) {
@@ -75,7 +99,7 @@ class _WPADSMNGR_uwxl__Restrictions {
 
 		$newArgs = $args;
 
-		$newArgs[ 'posts_per_page' ] = 1;
+		$newArgs[ 'posts_per_page' ] = 2;
 		//$newArgs[ 'nopaging ' ] = true;
 		$newArgs[ 'paged ' ] = true;
 

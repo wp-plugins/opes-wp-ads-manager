@@ -6,7 +6,7 @@
 Plugin Name: Opes WP Ads Manager
 Plugin URI: https://wordpress.org/plugins/opes-wp-ads-manager/
 Description: Opes WP Ads Manager allows you to show advertisements on the website
-Version: 1.1.0
+Version: 1.2.0
 Author: Paweł Twardziak
 Author URI: http://it-opes.com/
 License: GPLv2 or later
@@ -33,7 +33,7 @@ define( '__WPADSMNGR_uwxl__DS_' , DIRECTORY_SEPARATOR );
 define( '__WPADSMNGR_uwxl__PS_' , '/' );
 
 
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__VERSION_' , '1.1.0' );
+define( '__WPADSMNGR_uwxl__THIS_PLUGIN__VERSION_' , '1.2.0' );
 
 
 define( '__WPADSMNGR_uwxl__THIS_PLUGIN__MAIN_FILE_' , __FILE__ );

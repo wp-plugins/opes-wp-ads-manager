@@ -53,10 +53,12 @@ class _WPADSMNGR_uwxl__Add_Widgets {
 
 					        $title = !empty( $instance["title"] ) ? $instance["title"] : "";
 					        $ad_size = !empty( $instance["ad_size"] ) ? $instance["ad_size"] : "";
+					        $fixed_max_dimension = !empty( $instance["fixed_max_dimension"] ) ? $instance["fixed_max_dimension"] : "";
 					        ?>
-					            <p><label for="<?php echo $this->get_field_id("title"); ?>"><?php _e("Title:"); ?> <input class="widefat" id="<?php echo $this->get_field_id("title"); ?>" name="<?php echo $this->get_field_name("title"); ?>" type="text" value="<?php echo $title; ?>" /></label></p>
+					            <p><label for="<?php echo $this->get_field_id("title"); ?>"><?php _e("Title:",__WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_); ?><br />
+					            <input class="widefat" id="<?php echo $this->get_field_id("title"); ?>" name="<?php echo $this->get_field_name("title"); ?>" type="text" value="<?php echo $title; ?>" /></label></p>
 
-					            <p><label for="<?php echo $this->get_field_id("ad_size"); ?>"><?php _e("Rozmiar reklam:"); ?>
+					            <p><label for="<?php echo $this->get_field_id("ad_size"); ?>"><?php _e("Ad size:",__WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_); ?><br />
 					            <select name="<?php echo $this->get_field_name("ad_size"); ?>">
 					            	<?php
 										foreach ( $_WPADSMNGR_uwxl__InitData->imagesSizes as $slug => $data ) {
@@ -70,6 +72,24 @@ class _WPADSMNGR_uwxl__Add_Widgets {
 										}
 									?>
 					            </select></p>
+
+					            <?php
+					            	$checked = "w";
+					            	if ( $fixed_max_dimension == "h" )
+					            		$checked = "h";
+					            ?>
+					            <p><label for="<?php echo $this->get_field_id("ad_size"); ?>"><?php _e("Fixed dimension:",__WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_); ?><br />
+					            <input type="radio" name="<?php echo $this->get_field_name("fixed_max_dimension"); ?>" value="w"
+					            <?php 
+									if ( $checked == "w" )
+										echo \'checked="checked"\';
+								?> > <?php _e("Width",__WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_); ?><br />
+								<input type="radio" name="<?php echo $this->get_field_name("fixed_max_dimension"); ?>" value="h"
+								<?php 
+									if ( $checked == "h" )
+										echo \'checked="checked"\';
+								?> > <?php _e("Height",__WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_); ?>
+					            </p>
 					        <?php 
 					    }
 
@@ -77,6 +97,7 @@ class _WPADSMNGR_uwxl__Add_Widgets {
 							$instance = $old_instance;
 							$instance["title"] = strip_tags($new_instance["title"]);
 							$instance["ad_size"] = strip_tags($new_instance["ad_size"]);
+							$instance["fixed_max_dimension"] = strip_tags($new_instance["fixed_max_dimension"]);
 						        return $instance;
 						}
 

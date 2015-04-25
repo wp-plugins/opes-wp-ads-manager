@@ -1,5 +1,9 @@
 .wp-list-table th#advert_state,
-.wp-list-table td.advert_state {
+.wp-list-table td.advert_state,
+.wp-list-table td#ad_clicks,
+.wp-list-table td.ad_clicks,
+.wp-list-table td#ad_views,
+.wp-list-table td.ad_views {
 	width: 10%;
 }
 

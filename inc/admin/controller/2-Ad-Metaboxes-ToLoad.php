@@ -8,7 +8,7 @@ class _WPADSMNGR_uwxl__Ad_Metaboxes {
 		add_action( 'add_meta_boxes', array( $this , 'registerAddsMetaboxes' ) );
 
 		add_action( 'save_post', array( $this , 'registerAdMetabox_1_save' ) );
-		add_action( 'save_post', array( $this , 'registerAdMetabox_2_save' ) );
+		add_action( 'save_post', array( $this , 'registerAdMetabox_2_save' ) ); 
 	}
 
 	public static function init( $params ) {

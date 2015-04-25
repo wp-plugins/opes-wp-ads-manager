@@ -88,12 +88,34 @@ class _WPADSMNGR_uwxl__Widgets_Content {
 
 		$size = isset( $instance[ 'ad_size' ] ) && trim( $instance[ 'ad_size' ] ) != '' ? trim( $instance[ 'ad_size' ] ) : 'full' ;
 
+		$fixed_max_dimension = isset( $instance[ 'fixed_max_dimension' ] ) && trim( $instance[ 'fixed_max_dimension' ] ) != '' ? trim( $instance[ 'fixed_max_dimension' ] ) : '' ;
+
 		$widget_content = '';
 
 		if ( is_array( $ads ) && count( $ads ) > 0 ) {
 			foreach ( $ads as $key => $ad ) {
 				$thumb_id = get_post_thumbnail_id( $ad->ID );
 				$image = wp_get_attachment_image_src( $thumb_id, $size );
+
+				$style_to_img = '';
+				if ( isset( $image[3] ) && $image[3] === true ) {
+					switch ( $fixed_max_dimension ) {
+						case 'w':
+							if ( isset( $image[1] ) && is_numeric( $image[1] ) )
+								$style_to_img .= 'width: 100%; height: auto; max-width: ' . $image[1] . 'px;';
+							break;
+
+						case 'h':
+							if ( isset( $image[2] ) && is_numeric( $image[2] ) )
+								$style_to_img .= 'width: auto; height: auto; max-height: ' . $image[2] . 'px; max-width: 100%;';
+							break;
+					};
+				} else {
+					$style_to_img .= 'width: 100%; height: auto;';
+				};
+				if ( trim( $style_to_img ) != '' ) {
+					$style_to_img = 'style="'.$style_to_img.'"';
+				};
 
 				$advert_url = get_post_meta( $ad->ID , 'advert_url' , true );
 				if ( trim( $advert_url ) == '' )
@@ -106,13 +128,21 @@ class _WPADSMNGR_uwxl__Widgets_Content {
 
 						$show_ad_in_widget .= '<a href="'.$advert_url.'" target="_blank" title="'.$ad->post_title.'">';
 						
-							$show_ad_in_widget .= '<img class="'.str_replace( 'advert' , '' , $size ).'" src="'.trim( $image[0] ).'">';
+							$show_ad_in_widget .= '<img class="'.str_replace( 'advert' , '' , $size ).'" src="'.trim( $image[0] ).'" '.$style_to_img.' />';
 
 						$show_ad_in_widget .= '</a>';
 
 					$show_ad_in_widget .= '</div>';
 
-					$show_ad_in_widget = apply_filters( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_before_show_ad_in_widget_filter' , $show_ad_in_widget , $ad , $advert_url , $size , $image );
+					$filter_params = array(
+						'ad' => $ad,
+						'advert_url' => $advert_url,
+						'size' => $size,
+						'fixed_max_dimension' => $fixed_max_dimension, 
+						'image' => $image
+					);
+
+					$show_ad_in_widget = apply_filters( $_WPADSMNGR_uwxl__InitData->plugin_short_slug . '_before_show_ad_in_widget_filter' , $show_ad_in_widget , $filter_params/*$ad , $advert_url , $size , $fixed_max_dimension , $image */);
 
 					$widget_content .= $show_ad_in_widget;
 

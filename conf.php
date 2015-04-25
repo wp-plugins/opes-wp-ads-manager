@@ -5,24 +5,18 @@ function _WPADSMNGR_uwxl__load_textdomain() {
 	load_plugin_textdomain( __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ , false , __WPADSMNGR_uwxl__THIS_PLUGIN__INC_DIR_ . 'languages' );
 }
 
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__AD_IS_VALID_' , __( 'Ad is active' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__AD_IS_NOT_VALID_' , __( 'Ad is NOT active' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__AD_VALIDATION_ERROR_' , __( 'An error occurred while validating ad' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__AD_VALIDATION_TITLE_' , __( 'Ad activity' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
+if ( file_exists( __WPADSMNGR_uwxl__THIS_PLUGIN__COMMON_DIR_ . 'controller' . __WPADSMNGR_uwxl__DS_ . 'localize-scripts.php' ) ) {
+	include_once( __WPADSMNGR_uwxl__THIS_PLUGIN__COMMON_DIR_ . 'controller' . __WPADSMNGR_uwxl__DS_ . 'localize-scripts.php' );
+}
+if ( file_exists( __WPADSMNGR_uwxl__THIS_PLUGIN__ADMIN_URL_ . 'controller' . __WPADSMNGR_uwxl__DS_ . 'localize-scripts.php' ) ) {
+	include_once( __WPADSMNGR_uwxl__THIS_PLUGIN__ADMIN_DIR_ . 'controller' . __WPADSMNGR_uwxl__DS_ . 'localize-scripts.php' );
+}
+if ( file_exists( __WPADSMNGR_uwxl__THIS_PLUGIN__FRONT_DIR_ . 'controller' . __WPADSMNGR_uwxl__DS_ . 'localize-scripts.php' ) ) {
+	include_once( __WPADSMNGR_uwxl__THIS_PLUGIN__FRONT_DIR_ . 'controller' . __WPADSMNGR_uwxl__DS_ . 'localize-scripts.php' );
+}
 
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__ADS_ON_POSITION_TITLE_' , __( 'Getting ads for the selected position' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__ADS_ON_POSITION_ERROR_' , __( 'An error occurred while getting ads' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_POSITION_TITLE_' , __( 'Ads position update' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_POSITION_OK_' , __( 'The update succeeded' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_POSITION_ERROR_' , __( 'The update was NOT successful' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__ADD_POSITION_TITLE_' , __( 'Adding ad position' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
-define( '__WPADSMNGR_uwxl__THIS_PLUGIN__ADD_POSITION_NAME_ERROR_' , __( 'Position name can not be blank and must have at least 6 characters' , __WPADSMNGR_uwxl__THIS_PLUGIN__TEXT_DOMAIN_ ) );
 
 class _WPADSMNGR_uwxl__Conf {
-
-	
 
 	public static $defaultScriptsAndStyles = array(
 		'common' => array(
@@ -166,7 +160,8 @@ class _WPADSMNGR_uwxl__Conf {
 					'deps' => array(
 						'jquery',
 						'jquery-ui-accordion',
-						'jquery-ui-tabs'
+						'jquery-ui-tabs',
+						'jquery-ui-spinner'
 					),
 					'ver' => __WPADSMNGR_uwxl__THIS_PLUGIN__VERSION_,
 					'hook_deps' => array(
@@ -177,7 +172,18 @@ class _WPADSMNGR_uwxl__Conf {
 						'uwxl_update_position_ok' => __WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_POSITION_OK_,
 						'uwxl_update_position_error' => __WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_POSITION_ERROR_,
 						'uwxl_add_position_title' => __WPADSMNGR_uwxl__THIS_PLUGIN__ADD_POSITION_TITLE_,
-						'uwxl_add_position_name_error' => __WPADSMNGR_uwxl__THIS_PLUGIN__ADD_POSITION_NAME_ERROR_
+						'uwxl_add_position_name_error' => __WPADSMNGR_uwxl__THIS_PLUGIN__ADD_POSITION_NAME_ERROR_,
+						'uwxl_add_size_title' => __WPADSMNGR_uwxl__THIS_PLUGIN__ADD_SIZE_TITLE_,
+						'uwxl_add_size_title_error' => __WPADSMNGR_uwxl__THIS_PLUGIN__ADD_SIZE_TITLE_ERROR_,
+						'uwxl_update_size_title' => __WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_SIZE_TITLE_,
+						'uwxl_update_size_ok' => __WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_SIZE_OK_,
+						'uwxl_update_size_error' => __WPADSMNGR_uwxl__THIS_PLUGIN__UPDATE_SIZE_ERROR_,
+						'uwxl_delete_title' => __WPADSMNGR_uwxl__THIS_PLUGIN__DELETE_TITLE_,
+						'uwxl_delete_error' => __WPADSMNGR_uwxl__THIS_PLUGIN__ELETE_ERROR_,
+						'uwxl_delete_confirm' => __WPADSMNGR_uwxl__THIS_PLUGIN__DELETE_CONFIRM_,
+						'uwxl_set_admin_column_size_title' => __WPADSMNGR_uwxl__THIS_PLUGIN__SET_ADMIN_COLUMN_SIZE_TITLE_,
+						'uwxl_set_admin_column_size_ok' => __WPADSMNGR_uwxl__THIS_PLUGIN__SET_ADMIN_COLUMN_SIZE_OK_,
+						'uwxl_set_admin_column_size_error' => __WPADSMNGR_uwxl__THIS_PLUGIN__SET_ADMIN_COLUMN_SIZE_ERROR_,
 					)
 				),
 /*
@@ -363,7 +369,7 @@ class _WPADSMNGR_uwxl__Conf {
 		),
 		'front' => array(
 			'js' => array(
-/*
+
 				array( 
 					'handle' => 'wpadsmngr_uwxl_front',
 					'src' => 'script-front-stats.js',
@@ -375,7 +381,7 @@ class _WPADSMNGR_uwxl__Conf {
 						'uwxl_ajaxurl' => __WPADSMNGR_uwxl__THIS_PLUGIN__ADMINAJAX_
 					)
 				)
-*/
+
 			),
 			'css' => array(
 

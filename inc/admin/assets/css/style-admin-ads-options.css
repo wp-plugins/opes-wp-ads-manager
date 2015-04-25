@@ -26,3 +26,22 @@ table.options-table td input[type='text'],
 table.options-table td textarea {
 	width: 100%;
 }
+
+.ui-spinner-input {
+	display: inline-block !important;
+	visibility: visible !important;
+}
+
+.item-widget #accordion-form-title {
+}
+
+.item-widget #accordion-form-title .delete-alink {
+	float: right;
+	color: blue;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.item-widget #accordion-form-title .delete-alink:hover {
+	text-decoration: underline;
+}
