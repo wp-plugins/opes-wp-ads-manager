@@ -1,0 +1,22 @@
+.wp-list-table th#advert_state,
+.wp-list-table td.advert_state,
+.wp-list-table td#ad_clicks,
+.wp-list-table td.ad_clicks,
+.wp-list-table td#ad_views,
+.wp-list-table td.ad_views {
+	width: 10%;
+}
+
+.wp-list-table td.advert_state img {
+	width: 28px;
+	cursor: pointer;
+}
+
+.wp-list-table th#advert_img,
+.wp-list-table td.advert_img {
+	width: 20%;
+}
+
+.wp-list-table td.advert_img img {
+	max-width: 200px;
+}

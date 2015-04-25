@@ -1,0 +1,47 @@
+.uwxl-options-wrap {
+	overflow: auto;
+}
+
+table.show-options-table,
+table.options-table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid grey;
+}
+
+table.show-options-table th,
+table.show-options-table td,
+table.options-table th,
+table.options-table td {
+	padding: 3px 6px;
+	border: 1px solid grey;
+}
+
+table.options-table {
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+table.options-table td input[type='text'],
+table.options-table td textarea {
+	width: 100%;
+}
+
+.ui-spinner-input {
+	display: inline-block !important;
+	visibility: visible !important;
+}
+
+.item-widget #accordion-form-title {
+}
+
+.item-widget #accordion-form-title .delete-alink {
+	float: right;
+	color: blue;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.item-widget #accordion-form-title .delete-alink:hover {
+	text-decoration: underline;
+}

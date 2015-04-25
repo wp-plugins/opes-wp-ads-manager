@@ -1,0 +1,19 @@
+h4.metabox-field-header {
+	margin-bottom: 6px !important;
+}
+
+select.opes-rtl {
+	/*
+	direction: rtl;
+	text-align: right;
+	width: 100%;
+	*/
+}
+
+button.ui-multiselect {
+	width: 100% !important;
+}
+
+.ui-state-highlight {
+	height: 25px !important;
+}
